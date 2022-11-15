@@ -3,12 +3,11 @@ package app
 import (
 	"encoding/json"
 	"fmt"
+	"input-harga-service/internal/config"
+	"input-harga-service/internal/models"
 	"log"
 	"net/http"
 	"time"
-
-	"input-harga-service/internal/config"
-	"input-harga-service/internal/models"
 
 	"github.com/segmentio/kafka-go"
 	"github.com/teris-io/shortid"
@@ -32,7 +31,7 @@ func InputHarga(w http.ResponseWriter, r *http.Request) {
 	}
 
 	m := &models.Harga{
-		ID:        id,
+		ReffID:    id,
 		HargaData: data,
 	}
 
