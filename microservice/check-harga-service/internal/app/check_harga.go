@@ -1,11 +1,10 @@
 package app
 
 import (
-	"encoding/json"
-	"net/http"
-
 	"check-harga-service/internal/config"
 	"check-harga-service/internal/models"
+	"encoding/json"
+	"net/http"
 )
 
 func CheckHarga(w http.ResponseWriter, r *http.Request) {
@@ -13,7 +12,7 @@ func CheckHarga(w http.ResponseWriter, r *http.Request) {
 
 	m := new(models.Harga)
 
-	if err := c.DB.Model(m).First(m).Error; err != nil {
+	if err := c.DB.Model(m).Order("created_at DESC").First(m).Error; err != nil {
 		rs := &models.Response{
 			Error:   true,
 			Message: err.Error(),

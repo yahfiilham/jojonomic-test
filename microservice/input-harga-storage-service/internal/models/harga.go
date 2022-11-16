@@ -8,7 +8,7 @@ type Harga struct {
 }
 
 type HargaData struct {
-	HargaTopup   int64  `json:"harga_topup" gorm:"type:integer;"`
-	HargaBuyback int64  `json:"harga_buyback" gorm:"type:integer"`
-	AdminID      string `json:"admin_id" gorm:"type:varchar(255);"`
+	HargaTopup   float64 `json:"harga_topup" gorm:"type:integer;"`
+	HargaBuyback float64 `json:"harga_buyback" gorm:"type:integer"`
+	AdminID      string  `json:"admin_id" gorm:"type:varchar(255);"`
 }

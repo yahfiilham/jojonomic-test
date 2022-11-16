@@ -3,7 +3,6 @@ package app
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"input-harga-storage-service/internal/config"
 	"input-harga-storage-service/internal/models"
 	"log"
@@ -28,7 +27,6 @@ func ReadMessage() {
 		if rs := c.DB.Model(m).Updates(&m); rs.Error != nil {
 			log.Printf("error update harga to database with error message : %s \n", err.Error())
 		} else if rs.RowsAffected == 0 {
-			fmt.Println("row effected", rs.RowsAffected)
 			if err := c.DB.Model(m).Create(&m).Error; err != nil {
 				log.Printf("error insert harga to database with error message : %s \n", err.Error())
 			}

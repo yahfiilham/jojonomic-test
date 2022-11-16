@@ -66,16 +66,16 @@ func Topup(w http.ResponseWriter, r *http.Request) {
 func validateTopup(db *gorm.DB, data *models.TopupData) error {
 	m := new(models.Harga)
 
-	if err := db.Model(m).First(&m).Error; err != nil {
+	if err := db.Model(m).Order("created_at DESC").First(&m).Error; err != nil {
 		return err
 	}
 
-	harga, err := strconv.Atoi(data.Harga)
+	harga, err := strconv.ParseFloat(data.Harga, 64)
 	if err != nil {
 		return err
 	}
 
-	if int64(harga) != m.HargaData.HargaTopup {
+	if harga != m.HargaData.HargaTopup {
 		return errors.New("harga doesn't match with current harga topup")
 	}
 

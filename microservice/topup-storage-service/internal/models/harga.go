@@ -8,7 +8,7 @@ type Harga struct {
 }
 
 type HargaData struct {
-	HargaTopup   int64  `json:"harga_topup"`
-	HargaBuyback int64  `json:"harga_buyback"`
-	AdminID      string `json:"admin_id"`
+	HargaTopup   float64 `json:"harga_topup"`
+	HargaBuyback float64 `json:"harga_buyback"`
+	AdminID      string  `json:"admin_id"`
 }
