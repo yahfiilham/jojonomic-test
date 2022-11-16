@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "3255e63e-f7f1-4fd3-99f0-5889cf87c917",
+		"name": "jojonomic-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17037134"
+	},
+	"item": [
+		{
+			"name": "input harga",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"admin_id\": \"a001\",\n    \"harga_topup\": 910000,\n    \"harga_buyback\": 820000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/input-harga",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"input-harga"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"gram\": \"0.2\",\n    \"harga\": \"910000\",\n    \"norek\": \"r001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8003/api/topup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8003",
+					"path": [
+						"api",
+						"topup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"norek\": \"r001\",\n    \"harga\": 920000,\n    \"gram\": 0.1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8007/api/buyback",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8007",
+					"path": [
+						"api",
+						"buyback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cek harga",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/api/check-harga",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"check-harga"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cek mutasi",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"norek\": \"r001\",\n    \"start_date\": 1667292951,\n    \"end_date\": 1669798551000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8006/api/check-mutasi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8006",
+					"path": [
+						"api",
+						"check-mutasi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cek saldo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"norek\": \"r001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8005/api/saldo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8005",
+					"path": [
+						"api",
+						"saldo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

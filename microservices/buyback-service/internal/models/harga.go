@@ -1,7 +1,7 @@
 package models
 
 type Harga struct {
-	ID string `json:"id"`
+	ReffID string `json:"reff_id"`
 	HargaData
 	CreatedAt int64 `json:"created_at"`
 	UpdatedAt int64 `json:"updated_at"`

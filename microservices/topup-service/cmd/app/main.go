@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
 	"topup-service/internal/app"
 	"topup-service/internal/config"
 )
@@ -16,5 +15,5 @@ func main() {
 	router.HandleFunc("/api/topup", app.Topup).Methods(http.MethodPost)
 
 	log.Printf("api running in port %d", c.Port)
-	http.ListenAndServe(fmt.Sprintf("localhost:%d", c.Port), router)
+	http.ListenAndServe(fmt.Sprintf(":%d", c.Port), router)
 }

@@ -52,3 +52,113 @@ services:
     depends_on:
       - zookeeper
       - kafka
+
+  ## Microservices
+  input-harga-service:
+    build:
+      context: ../microservices/input-harga-service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  input-harga-storage-service:
+    build:
+      context: ../microservices/input-harga-storage-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  check-harga-service:
+    build:
+      context: ../microservices/check-harga-service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  topup-service:
+    build:
+      context: ../microservices/topup-service
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  topup-storage-service:
+    build:
+      context: ../microservices/topup-storage-service
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8004"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  check-saldo-service:
+    build:
+      context: ../microservices/check-saldo-service
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  check-mutasi-service:
+    build:
+      context: ../microservices/check-mutasi-service
+      dockerfile: Dockerfile
+    ports:
+      - "8006:8006"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  buyback-service:
+    build:
+      context: ../microservices/buyback-service
+      dockerfile: Dockerfile
+    ports:
+      - "8007:8007"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
+  buyback-storage-service:
+    build:
+      context: ../microservices/buyback-storage-service
+      dockerfile: Dockerfile
+    ports:
+      - "8008:8008"
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432, kafka:9093, zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka

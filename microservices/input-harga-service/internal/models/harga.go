@@ -1,7 +1,7 @@
 package models
 
 type Harga struct {
-	ReffID string `json:"id"`
+	ReffID string `json:"reff_id"`
 	HargaData
 }
 

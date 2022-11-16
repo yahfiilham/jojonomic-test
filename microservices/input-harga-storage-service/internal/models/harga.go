@@ -1,7 +1,7 @@
 package models
 
 type Harga struct {
-	ID string `json:"id" gorm:"type:varchar(255);primaryKey"`
+	ReffID string `json:"reff_id" gorm:"type:varchar(255);primaryKey"`
 	HargaData
 	CreatedAt int64 `json:"created_at" gorm:"type:integer;autoCreateTime"`
 	UpdatedAt int64 `json:"updated_at" gorm:"type:integer;autoUpdateTime"`

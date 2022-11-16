@@ -12,8 +12,8 @@ func main() {
 	c := config.NewConfig()
 	router := c.Router
 
-	router.HandleFunc("/api/check-mutasi", app.CheckMutasi).Methods(http.MethodGet)
+	router.HandleFunc("/api/mutasi", app.CheckMutasi).Methods(http.MethodGet)
 
 	log.Printf("api running in port %d", c.Port)
-	http.ListenAndServe(fmt.Sprintf("localhost:%d", c.Port), router)
+	http.ListenAndServe(fmt.Sprintf(":%d", c.Port), router)
 }

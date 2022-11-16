@@ -1,12 +1,11 @@
 package main
 
 import (
+	"check-harga-service/internal/app"
+	"check-harga-service/internal/config"
 	"fmt"
 	"log"
 	"net/http"
-
-	"check-harga-service/internal/app"
-	"check-harga-service/internal/config"
 )
 
 func main() {
@@ -16,5 +15,5 @@ func main() {
 	router.HandleFunc("/api/check-harga", app.CheckHarga).Methods(http.MethodGet)
 
 	log.Printf("api running in port %d", c.Port)
-	http.ListenAndServe(fmt.Sprintf("localhost:%d", c.Port), router)
+	http.ListenAndServe(fmt.Sprintf(":%d", c.Port), router)
 }
