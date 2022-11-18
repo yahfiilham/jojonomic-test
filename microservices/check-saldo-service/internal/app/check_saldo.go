@@ -1,17 +1,18 @@
 package app
 
 import (
-	"check-saldo-service/internal/config"
-	"check-saldo-service/internal/models"
 	"encoding/json"
 	"errors"
 	"net/http"
+
+	"check-saldo-service/configs"
+	"check-saldo-service/internal/models"
 
 	"gorm.io/gorm"
 )
 
 func CheckSaldo(w http.ResponseWriter, r *http.Request) {
-	c := config.NewConfig()
+	c := configs.NewConfig()
 
 	p := new(models.CheckSaldoRequest)
 

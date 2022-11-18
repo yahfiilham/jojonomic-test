@@ -7,6 +7,7 @@ services:
     environment:
       - POSTGRES_USER=adminpostgres
       - POSTGRES_PASSWORD=87654321
+      - POSTGRES_DB=emas_digital
     ports:
       # <Port exposed> : < Postgres Port running inside container>
       - "5432:5432"
@@ -15,8 +16,8 @@ services:
       - "5432"
       # Where our data will be persisted
     volumes:
-      - /home/yahfiilham/database-docker/postgres:/var/lib/postgresql/data
-      # - ./sql/create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - ./db/data/:/var/lib/postgresql/data
   zookeeper:
     image: confluentinc/cp-zookeeper:5.2.4
     ports:
@@ -55,6 +56,7 @@ services:
 
   ## Microservices
   input-harga-service:
+    container_name: input-harga-service
     build:
       context: ../microservices/input-harga-service
       dockerfile: Dockerfile
@@ -67,6 +69,7 @@ services:
       - zookeeper
       - kafka
   input-harga-storage-service:
+    container_name: input-harga-storage-service
     build:
       context: ../microservices/input-harga-storage-service
       dockerfile: Dockerfile
@@ -79,6 +82,7 @@ services:
       - zookeeper
       - kafka
   check-harga-service:
+    container_name: check-harga-service
     build:
       context: ../microservices/check-harga-service
       dockerfile: Dockerfile
@@ -91,6 +95,7 @@ services:
       - zookeeper
       - kafka
   topup-service:
+    container_name: topup-service
     build:
       context: ../microservices/topup-service
       dockerfile: Dockerfile
@@ -103,6 +108,7 @@ services:
       - zookeeper
       - kafka
   topup-storage-service:
+    container_name: topup-storage-service
     build:
       context: ../microservices/topup-storage-service
       dockerfile: Dockerfile
@@ -115,6 +121,7 @@ services:
       - zookeeper
       - kafka
   check-saldo-service:
+    container_name: check-saldo-service
     build:
       context: ../microservices/check-saldo-service
       dockerfile: Dockerfile
@@ -127,6 +134,7 @@ services:
       - zookeeper
       - kafka
   check-mutasi-service:
+    container_name: check-mutasi-service
     build:
       context: ../microservices/check-mutasi-service
       dockerfile: Dockerfile
@@ -139,6 +147,7 @@ services:
       - zookeeper
       - kafka
   buyback-service:
+    container_name: buyback-service
     build:
       context: ../microservices/buyback-service
       dockerfile: Dockerfile
@@ -151,6 +160,7 @@ services:
       - zookeeper
       - kafka
   buyback-storage-service:
+    container_name: buyback-storage-service
     build:
       context: ../microservices/buyback-storage-service
       dockerfile: Dockerfile

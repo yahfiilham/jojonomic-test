@@ -8,7 +8,7 @@ type Topup struct {
 }
 
 type TopupData struct {
-	Gram  string `json:"gram" gorm:"type:varchar(255)"`
-	Harga string `json:"harga" gorm:"type:varchar(255)"`
+	Gram  string `json:"gram" gorm:"type:varchar(100)"`
+	Harga string `json:"harga" gorm:"type:varchar(100)"`
 	Norek string `json:"norek" gorm:"type:varchar(20)"`
 }

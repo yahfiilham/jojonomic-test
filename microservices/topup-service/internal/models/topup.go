@@ -2,7 +2,6 @@ package models
 
 type Topup struct {
 	ReffID string `json:"reff_id"`
-
 	TopupData
 }
 

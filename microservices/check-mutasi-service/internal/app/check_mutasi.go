@@ -1,14 +1,15 @@
 package app
 
 import (
-	"check-mutasi-service/internal/config"
-	"check-mutasi-service/internal/models"
 	"encoding/json"
 	"net/http"
+
+	"check-mutasi-service/configs"
+	"check-mutasi-service/internal/models"
 )
 
 func CheckMutasi(w http.ResponseWriter, r *http.Request) {
-	c := config.NewConfig()
+	c := configs.NewConfig()
 
 	p := new(models.CheckMutasiRequest)
 

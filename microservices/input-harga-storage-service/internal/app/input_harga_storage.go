@@ -3,13 +3,14 @@ package app
 import (
 	"context"
 	"encoding/json"
-	"input-harga-storage-service/internal/config"
-	"input-harga-storage-service/internal/models"
 	"log"
+
+	"input-harga-storage-service/configs"
+	"input-harga-storage-service/internal/models"
 )
 
 func ReadMessage() {
-	c := config.NewConfig()
+	c := configs.NewConfig()
 	ctx := context.Background()
 
 	for {

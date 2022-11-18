@@ -2,24 +2,21 @@ package app
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 	"time"
 
-	"topup-service/configs"
-	"topup-service/internal/models"
+	"input-harga-service/configs"
+	"input-harga-service/internal/models"
 
 	"github.com/segmentio/kafka-go"
 	"github.com/teris-io/shortid"
-	"gorm.io/gorm"
 )
 
-func Topup(w http.ResponseWriter, r *http.Request) {
+func InputHarga(w http.ResponseWriter, r *http.Request) {
 	c := configs.NewConfig()
-	var data models.TopupData
+	var data models.HargaData
 
 	id, _ := shortid.Generate()
 
@@ -29,20 +26,15 @@ func Topup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	m := &models.Topup{
+	m := &models.Harga{
 		ReffID:    id,
-		TopupData: data,
+		HargaData: data,
 	}
 
 	defer r.Body.Close()
 
 	pByte, err := json.Marshal(&m)
 	if err != nil {
-		sendResponse(w, http.StatusBadRequest, true, id, err.Error())
-		return
-	}
-
-	if err := validateTopup(c.DB, &m.TopupData); err != nil {
 		sendResponse(w, http.StatusBadRequest, true, id, err.Error())
 		return
 	}
@@ -61,36 +53,7 @@ func Topup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sendResponse(w, http.StatusCreated, false, id, ``)
-}
-
-func validateTopup(db *gorm.DB, data *models.TopupData) error {
-	m := new(models.Harga)
-
-	if err := db.Model(m).Order("created_at DESC").First(&m).Error; err != nil {
-		return err
-	}
-
-	harga, err := strconv.ParseFloat(data.Harga, 64)
-	if err != nil {
-		return err
-	}
-
-	if harga != m.HargaData.HargaTopup {
-		return errors.New("harga doesn't match with current harga topup")
-	}
-
-	gram, err := strconv.ParseFloat(data.Gram, 64)
-	if err != nil {
-		return err
-	}
-
-	n := gram / 0.001
-	if n != float64(int(n)) || gram == 0 {
-		return errors.New("minimum top-up is multiply of 0.001")
-	}
-
-	return nil
+	sendResponse(w, http.StatusCreated, false, id, "")
 }
 
 func sendResponse(w http.ResponseWriter, code int, isError bool, id string, msg string) {

@@ -8,6 +8,6 @@ type Rekening struct {
 }
 
 type RekeningData struct {
-	NoRek string  `json:"no_rek" gorm:"type:varchar(15);unique"`
-	Saldo float64 `json:"saldo" gorm:"type:decimal(12,2)"`
+	NoRek string  `json:"no_rek" gorm:"type:varchar(20);unique"`
+	Saldo float64 `json:"saldo" gorm:"type:decimal(12,3)"`
 }

@@ -1,18 +1,19 @@
 package app
 
 import (
-	"buyback-storage-service/internal/config"
-	"buyback-storage-service/internal/models"
 	"context"
 	"encoding/json"
 	"log"
+
+	"buyback-storage-service/configs"
+	"buyback-storage-service/internal/models"
 
 	"github.com/teris-io/shortid"
 	"gorm.io/gorm"
 )
 
 func ReadMessage() {
-	c := config.NewConfig()
+	c := configs.NewConfig()
 	ctx := context.Background()
 
 	for {

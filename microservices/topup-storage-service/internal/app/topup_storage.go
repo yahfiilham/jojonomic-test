@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"log"
 	"strconv"
-	"topup-storage-service/internal/config"
+	"topup-storage-service/configs"
 	"topup-storage-service/internal/models"
 
 	"github.com/teris-io/shortid"
@@ -13,7 +13,7 @@ import (
 )
 
 func ReadMessage() {
-	c := config.NewConfig()
+	c := configs.NewConfig()
 	ctx := context.Background()
 
 	for {
@@ -32,8 +32,8 @@ func ReadMessage() {
 			log.Printf("error when insert topup to database with error message %s\n", err.Error())
 		}
 
-		go saveToRekening(c.DB, m)
-		go saveToTransaksi(c.DB, m)
+		saveToRekening(c.DB, m)
+		saveToTransaksi(c.DB, m)
 
 		if err := c.Kafka.CommitMessages(ctx, kf); err != nil {
 			log.Printf("CommitMessage Failed error : %s", err.Error())
@@ -89,7 +89,7 @@ func saveToTransaksi(db *gorm.DB, data *models.Topup) {
 		TransaksiData: models.TransaksiData{
 			Type:         "topup",
 			Gram:         gram,
-			Saldo:        rek.Saldo + gram,
+			Saldo:        rek.Saldo,
 			HargaTopup:   harga.HargaTopup,
 			HargaBuyback: harga.HargaBuyback,
 			NoRek:        data.Norek,

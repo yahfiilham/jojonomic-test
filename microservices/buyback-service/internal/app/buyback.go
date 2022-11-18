@@ -1,8 +1,6 @@
 package app
 
 import (
-	"buyback-service/internal/config"
-	"buyback-service/internal/models"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -10,13 +8,16 @@ import (
 	"net/http"
 	"time"
 
+	"buyback-service/configs"
+	"buyback-service/internal/models"
+
 	"github.com/segmentio/kafka-go"
 	"github.com/teris-io/shortid"
 	"gorm.io/gorm"
 )
 
 func Buyback(w http.ResponseWriter, r *http.Request) {
-	c := config.NewConfig()
+	c := configs.NewConfig()
 	p := new(models.BuybackRequest)
 
 	id, _ := shortid.Generate()
